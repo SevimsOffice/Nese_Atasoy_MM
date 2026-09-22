@@ -105,9 +105,16 @@ Adding another form later needs no JavaScript: give the `<form>` a
 ## Deployment
 
 `.github/workflows/deploy.yml` builds the site and publishes `dist/` to GitHub
-Pages on every push to `main` (enable Pages → "GitHub Actions" in the
-repository settings once). Pull requests and other branches run
-`.github/workflows/build-check.yml`, which only verifies the build.
+Pages on every push to `main` **or** `claude/elegant-shannon-hyarpc`. Pull
+requests and other branches run `.github/workflows/build-check.yml`, which
+only verifies the build.
+
+GitHub Pages only accepts a deploy from the repository's **default branch**
+(Settings → General → "Default branch"), whatever that's currently set to —
+that's why the workflow watches both names above. Once Pages is enabled
+(Settings → Pages → Source: "GitHub Actions") and the default branch is set to
+`main`, the `claude/elegant-shannon-hyarpc` trigger becomes a harmless no-op
+and can be removed from `deploy.yml`.
 
 Any static host works just as well: build, upload `dist/`.
 
