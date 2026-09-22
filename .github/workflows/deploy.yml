@@ -2,7 +2,10 @@ name: Build and deploy site
 
 on:
   push:
-    branches: [main]
+    # Deploys from whichever of these is the repo's current default branch —
+    # GitHub Pages only accepts deployments from it. Once `main` is made the
+    # default in Settings → General, the other branch here becomes a no-op.
+    branches: [main, claude/elegant-shannon-hyarpc]
   workflow_dispatch:
 
 permissions:
